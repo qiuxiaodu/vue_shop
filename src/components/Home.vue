@@ -11,8 +11,9 @@
         <!-- 页面主题区域 -->
         <el-container>
             <!-- 侧边栏区域 -->
-            <el-aside width="200px">
-                <el-menu background-color="#333744" text-color="#fff" active-text-color="#409EFF" unique-opened>
+            <el-aside :width= "isCollapse ? '64px' : '200px'">
+              <div class="toggle-button" @click="toggleCollapse"> ||| </div>
+                <el-menu background-color="#333744" text-color="#fff" active-text-color="#409EFF" unique-opened :collapse="isCollapse" :collapse-transition="false">
                 <!-- 一级菜单 -->
                 <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
                     <!-- 一级菜单模板区 -->
@@ -52,7 +53,8 @@ export default {
         '103': 'iconfont icon-tijikongjian',
         '125': 'iconfont icon-user',
         '145': 'iconfont icon-baobiao'
-      }
+      },
+      isCollapse: false
     }
   },
   created () {
@@ -68,7 +70,9 @@ export default {
       const { data: res } = await this.$http.request('menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.menulist = res.data
-      console.log(res)
+    },
+    toggleCollapse () {
+      this.isCollapse = !this.isCollapse
     }
   }
 }
@@ -109,5 +113,14 @@ export default {
 
 .iconfont {
     margin-right: 10px;
+}
+.toggle-button {
+  background-color: #4a5064;
+  font-size: 10px;
+  line-height: 24px;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 0.2em;
+  cursor: pointer;
 }
 </style>
