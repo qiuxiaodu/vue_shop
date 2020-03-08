@@ -7,24 +7,14 @@
       </div>
 
       <!-- 登录表单区 -->
-      <el-form
-        ref="loginFormRef"
-        :model="loginForm"
-        :rules="loginFormRules"
-        label-width="0px"
-        class="login_form"
-      >
+      <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
         <!-- 用户名 -->
         <el-form-item prop="username">
           <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
-          <el-input
-            v-model="loginForm.password"
-            prefix-icon="iconfont icon-3702mima"
-            type="password"
-          ></el-input>
+          <el-input v-model="loginForm.password" prefix-icon="iconfont icon-3702mima" type="password"></el-input>
         </el-form-item>
 
         <!-- 按钮区 -->
@@ -49,7 +39,7 @@ export default {
       // 这个是表单的验证规则对象
       loginFormRules: {
         username: [
-          { required: true, message: '请输入登录', trigger: 'blur' },
+          { required: true, message: '请输入登录用户名', trigger: 'blur' },
           { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
         password: [
